@@ -1,8 +1,7 @@
 from datetime import datetime, timezone
 
 from analyzer import GeminiAnalyzer
-from sources.thinkcontest import ThinkContestSource
-from sources.wevity import WevitySource
+from sources.contestkorea import ContestKoreaSource
 from storage import SupabaseStorage
 from utils import looks_ai_related, looks_creative, make_fingerprint, normalize_space
 
@@ -10,8 +9,9 @@ def main():
     print("=== AI Contest Radar ===")
 
     sources = [
-        ThinkContestSource(),
-        WevitySource(),
+
+        ContestKoreaSource(),
+
     ]
 
     analyzer = GeminiAnalyzer()
