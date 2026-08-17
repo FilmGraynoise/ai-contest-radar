@@ -6,5 +6,5 @@ class ThinkContestSource(BaseSource):
         "https://www.thinkcontest.com/",
     ]
     link_markers = [
-        "/contest/view.do",
+        "/mthinkgood/contest/view.do",
     ]
