@@ -52,7 +52,7 @@ def main():
                 # Free prefilter: AI mention is required before calling Gemini.
                 # Creative keyword is a weak additional signal; AI-only technical contests
                 # are later rejected by the model.
-                if not looks_ai_related(combined):
+                if not looks_ai_related(raw.title):
                     stats["skipped"] += 1
                     continue
 
