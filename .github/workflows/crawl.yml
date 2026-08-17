@@ -1,0 +1,32 @@
+name: AI Contest Crawl
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 한국시간 09:00 = UTC 00:00
+    - cron: "0 0 * * *"
+    # 한국시간 18:00 = UTC 09:00
+    - cron: "0 9 * * *"
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r crawler/requirements.txt
+
+      - name: Run crawler
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python crawler/main.py
